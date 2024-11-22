@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema Solar - AR e VR</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+  <style>
+    .button-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  <div class="button-container">
+    <button onclick="startVR('terra')">Terra VR</button>
+    <button onclick="startVR('lua')">Lua VR</button>
+  </div>
+
+  <a-scene embedded arjs>
+    <script>
+      AFRAME.registerComponent('orbit', {
+        schema: { speed: { type: 'number', default: 1 } },
+        tick: function (time, timeDelta) {
+          this.el.object3D.rotation.y += timeDelta / 10000 * this.data.speed;
+        }
+      });
+
+      function startVR(planet) {
+        const scene = document.querySelector('a-scene');
+        const marker = document.querySelector('a-marker');
+        const vrScene = document.createElement('a-scene');
+        
+        if (planet === 'terra') {
+          vrScene.innerHTML = `
+            <a-sky src="https://cdn.glitch.global/1c07bdda-7041-4107-9b23-7065d76a6727/earth.jpeg?v=1732200662644"></a-sky>
+            <a-entity position="0 1.6 0" rotation="0 0 0">
+              <a-camera></a-camera>
+            </a-entity>
+          `;
+        } else if (planet === 'lua') {
+          vrScene.innerHTML = `
+            <a-sky src="https://cdn.glitch.global/1c07bdda-7041-4107-9b23-7065d76a6727/moon.jpeg?v=1732200693258"></a-sky>
+            <a-entity position="0 1.6 0" rotation="0 0 0">
+              <a-camera></a-camera>
+            </a-entity>
+          `;
+        }
+        
+        document.body.innerHTML = '';
+        document.body.appendChild(vrScene);
+
+        const backButton = document.createElement('button');
+        backButton.textContent = 'Voltar para AR';
+        backButton.style.position = 'fixed';
+        backButton.style.top = '20px';
+        backButton.style.left = '20px';
+        backButton.style.zIndex = '1000';
+        backButton.onclick = () => location.reload();
+        document.body.appendChild(backButton);
+      }
+    </script>
+
+    <a-marker preset="hiro">
+      <a-entity position="0 0.5 0">
+        <a-entity id="earth-orbit">
+          <a-sphere position="0 0 0" radius="1"
+            material="src: https://cdn.glitch.global/1c07bdda-7041-4107-9b23-7065d76a6727/earth.jpg?v=1732199293986;">
+          </a-sphere>
+          <a-entity position="0 0 0" orbit="speed: 5;">
+            <a-sphere position="2.7 0 0" radius="0.3"
+              material="src: https://cdn.glitch.global/1c07bdda-7041-4107-9b23-7065d76a6727/moon.jpg?v=1732199306262;">
+            </a-sphere>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
