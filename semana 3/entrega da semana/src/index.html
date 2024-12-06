@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Experiência VR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+      #message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 24px;
+        display: none;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body style="margin: 0; background: #000;">
+    <div id="message">Infelizmente não vai rolar :(</div>
+    
+    <a-scene>
+      <a-entity 
+        gltf-model="Spaceship.glb"
+        position="1 -40 -6"
+        rotation="0 10 0"
+        scale="0.6 0.6 0.6">
+      </a-entity>
+
+      <a-entity 
+        gltf-model="Scifi-Pod.glb" 
+        position="1 -20 23" 
+        rotation="0 10 0" 
+        scale="5 5 5">
+      </a-entity>
+
+      <a-entity 
+        gltf-model="Button.glb" 
+        position="1 -1.6 23" 
+        rotation="0 10 0" 
+        scale="5 5 5"
+        class="clickable"
+        cursor-listener>
+      </a-entity>
+
+      <a-entity 
+        gltf-model="Spaceship2.glb"
+        position="600 100 -6"
+        rotation="0 10 0"
+        scale="0.6 0.6 0.6">
+      </a-entity>
+
+      <a-entity 
+        gltf-model="Spaceship3.glb"
+        position="-600 100 -6"
+        rotation="0 10 0"
+        scale="0.6 0.6 0.6">
+      </a-entity>
+
+      <a-entity 
+        gltf-model="Solar-System.glb" 
+        position="200 0 800" 
+        rotation="0 50 0" 
+        scale="-70 -70 -70">
+      </a-entity>
+
+      <!-- Câmera com cursor -->
+      <a-entity position="0 7 0">
+        <a-camera>
+          <a-cursor color="#FFFFFF"></a-cursor>
+        </a-camera>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      AFRAME.registerComponent('cursor-listener', {
+        init: function () {
+          this.el.addEventListener('click', function (evt) {
+            showMessage();
+          });
+        }
+      });
+
+      function showMessage() {
+        const message = document.getElementById('message');
+        message.style.display = 'block';
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
