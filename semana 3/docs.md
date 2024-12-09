@@ -26,8 +26,8 @@ Obs: Todo código da aplicação está dentro da entrega da semana
 
 ![image](https://github.com/user-attachments/assets/cc55c33a-2067-4c3a-a7cb-c2df15acca12)
 
+![image](https://github.com/user-attachments/assets/d41ed790-b1db-40b3-b074-718e3b38f9c4)
+
 ![image](https://github.com/user-attachments/assets/54fad64a-7a68-497b-87c7-a723301d905f)
 
 ![image](https://github.com/user-attachments/assets/94b3e240-a410-42e2-8adc-e69896b7d2a3)
-
-![image](https://github.com/user-attachments/assets/d41ed790-b1db-40b3-b074-718e3b38f9c4)
