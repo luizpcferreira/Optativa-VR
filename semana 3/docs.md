@@ -20,6 +20,8 @@ Para fazer um projeto funcional que possa rodar na web foi necessário simplific
 
 O botão ele ativa um movimento das naves ao lado
 
+### Veja o Gif que está nesta pagina para ver um video de demonstração do jogo
+
 Obs: Todo código da aplicação está dentro da entrega da semana
 
 ![image](https://github.com/user-attachments/assets/cc55c33a-2067-4c3a-a7cb-c2df15acca12)
